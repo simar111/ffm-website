@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
+import UseCases from "../components/UseCases";
+import Features from "../components/features";
+import WhyChooseUs from "../components/whyChooseUs";
+import HowItWorks from "../components/HowItWorks";
+import Testimonials from "../components/Testimonials";
+import QuickQueryStrip from "../components/QueryStrip";
 
 const videoSections = [
   {
@@ -207,11 +213,19 @@ function VideoCard({ section, isActive, onClick, index }) {
 }
 
 export default function PremiumHero2026() {
+     const [showQuery, setShowQuery] = useState(false);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const { scrollYProgress } = useScroll();
   const bgScale = useTransform(scrollYProgress, [0, 0.4], [1, 1.15]);
+useEffect(() => {
+  const onScroll = () => {
+    setShowQuery(window.scrollY > 550);
+  };
 
+  window.addEventListener("scroll", onScroll);
+  return () => window.removeEventListener("scroll", onScroll);
+}, []);
   useEffect(() => {
     if (paused) return;
     const t = setInterval(() => {
@@ -221,6 +235,20 @@ export default function PremiumHero2026() {
   }, [paused]);
 
   return (
+    <>
+    <AnimatePresence>
+        {showQuery && (
+          <motion.div
+            className="sticky top-[64px] z-40"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <QuickQueryStrip />
+          </motion.div>
+        )}
+      </AnimatePresence>
     <div className="relative min-h-screen bg-gradient-to-br from-indigo-50/80 via-white to-purple-50/80 overflow-hidden">
       {/* Dynamic background orbs with scroll influence */}
       {floatingOrbs.map((orb, i) => (
@@ -368,5 +396,11 @@ export default function PremiumHero2026() {
         </motion.div>
       </div>
     </div>
+    <Features />
+              <WhyChooseUs />
+            <HowItWorks />
+            <Testimonials />
+            <UseCases />
+    </>
   );
 }
