@@ -11,6 +11,9 @@ import Industries from "./pages/Industries";
 import QuickQueryStrip from "./components/QueryStrip";
 import WorkforceManagement from "./components/WorkForceManagement";
 import AttendanceTracking from "./components/AttendenceTracking";
+import TasksOperations from "./components/TasksOperations";
+import ReportsInsights from "./components/ReportsInsights";
+import SecurityAdmin from "./components/SecurityAdmin";
 export default function App() {
   return (
     <>
@@ -26,6 +29,9 @@ export default function App() {
              <Route path="/industries" element={<Industries />} />
               <Route path="/features/workforce-management" element={<WorkforceManagement />} />
                <Route path="/features/attendence-tracking" element={<AttendanceTracking />} />
+               <Route path="/features/task-operations" element={<TasksOperations />} />
+                 <Route path="/features/reports-insights" element={<ReportsInsights />} />
+                    <Route path="/features/security-admin" element={<SecurityAdmin />} />
           <Route path="*" element={<NotFound />} /> 
         </Routes>
       </main>

@@ -62,7 +62,7 @@ export const featureMenu = [
   // 3️⃣ Tasks
   {
     label: "Task & Operations",
-    path: "/features/tasks-operations",
+    path: "/features/task-operations",
     children: [
       {
         label: "Task Assignment",
