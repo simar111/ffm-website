@@ -8,10 +8,14 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Pricing from "./pages/Pricing";
 import Industries from "./pages/Industries";
+import QuickQueryStrip from "./components/QueryStrip";
+import WorkforceManagement from "./components/WorkForceManagement";
+import AttendanceTracking from "./components/AttendenceTracking";
 export default function App() {
   return (
     <>
     <Navbar />
+    <QuickQueryStrip />
       <main >
         <Routes>
           <Route path="/" element={<Home />} />
@@ -20,6 +24,8 @@ export default function App() {
            <Route path="/login" element={<Login />} />
            <Route path="/pricing" element={<Pricing />} />
              <Route path="/industries" element={<Industries />} />
+              <Route path="/features/workforce-management" element={<WorkforceManagement />} />
+               <Route path="/features/attendence-tracking" element={<AttendanceTracking />} />
           <Route path="*" element={<NotFound />} /> 
         </Routes>
       </main>

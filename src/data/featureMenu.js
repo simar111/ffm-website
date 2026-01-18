@@ -2,7 +2,7 @@ export const featureMenu = [
   // 1️⃣ Workforce
   {
     label: "Workforce Management",
-    path: "/features/workforce",
+    path: "/features/workforce-management",
     children: [
       {
         label: "Employee Profiles",
@@ -32,7 +32,7 @@ export const featureMenu = [
   // 2️⃣ Attendance
   {
     label: "Attendance & Tracking",
-    path: "/features/attendance-tracking",
+    path: "/features/attendence-tracking",
     children: [
       {
         label: "Geo Attendance",
