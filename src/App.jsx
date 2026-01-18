@@ -14,6 +14,8 @@ import AttendanceTracking from "./components/AttendenceTracking";
 import TasksOperations from "./components/TasksOperations";
 import ReportsInsights from "./components/ReportsInsights";
 import SecurityAdmin from "./components/SecurityAdmin";
+import AlternateHero from "./pages/Hero1";
+import AlternateHero1 from "./pages/Hero2";
 export default function App() {
   return (
     <>
@@ -21,7 +23,7 @@ export default function App() {
     <QuickQueryStrip />
       <main >
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AlternateHero />} />
            <Route path="/Contact" element={<Contact />} />
            <Route path="/about" element={<About />} />
            <Route path="/login" element={<Login />} />
