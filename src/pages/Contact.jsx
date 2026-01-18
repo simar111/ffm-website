@@ -1,10 +1,12 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useReveal } from "../hooks/useReveal";
-
+import QuickQueryStrip from "../components/QueryStrip";
 export default function Contact() {
   const [ref, visible] = useReveal();
 
   return (
+    <>
+    <QuickQueryStrip />
     <section
       ref={ref}
       className="relative bg-bgLight min-h-screen py-36 overflow-hidden"
@@ -161,5 +163,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
+    </>
   );
 }

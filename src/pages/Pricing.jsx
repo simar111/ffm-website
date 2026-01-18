@@ -1,6 +1,6 @@
 import { Check, Star } from "lucide-react";
 import { useReveal } from "../hooks/useReveal";
-
+import QuickQueryStrip from "../components/QueryStrip";
 const plans = [
   {
     name: "Starter",
@@ -51,6 +51,8 @@ export default function Pricing() {
   const [ref, visible] = useReveal();
 
   return (
+    <>
+    <QuickQueryStrip />
     <section
       ref={ref}
       className="relative bg-bgLight min-h-screen py-36 overflow-hidden"
@@ -170,5 +172,6 @@ export default function Pricing() {
 
       </div>
     </section>
+    </>
   );
 }

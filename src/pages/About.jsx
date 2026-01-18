@@ -1,10 +1,12 @@
 import { Target, Users, Globe, ShieldCheck } from "lucide-react";
 import { useReveal } from "../hooks/useReveal";
-
+import QuickQueryStrip from "../components/QueryStrip";
 export default function About() {
   const [ref, visible] = useReveal();
 
   return (
+    <>
+    <QuickQueryStrip />
     <section
       ref={ref}
       className="relative bg-bgLight min-h-screen py-36 overflow-hidden"
@@ -196,5 +198,6 @@ export default function About() {
 
       </div>
     </section>
+    </>
   );
 }
