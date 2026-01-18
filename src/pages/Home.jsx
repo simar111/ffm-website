@@ -5,6 +5,7 @@ import Features from "../components/features";
 import WhyChooseUs from "../components/whyChooseUs";
 import HowItWorks from "../components/HowItWorks";
 import Testimonials from "../components/Testimonials";
+import QuickQueryStrip from "../components/QueryStrip";
 const images = ["/images/home.png", "/images/attendence1.png", "/images/dashboard2.png"];
 const keywords = ["tracking", "attendance", "productivity", "visibility"];
 const stats = [
@@ -50,11 +51,21 @@ function Counter({ value }) {
 }
 
 export default function EnhancedHero() {
+  const [showQuery, setShowQuery] = useState(false);
+
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+useEffect(() => {
+  const onScroll = () => {
+    setShowQuery(window.scrollY > 550);
+  };
+
+  window.addEventListener("scroll", onScroll);
+  return () => window.removeEventListener("scroll", onScroll);
+}, []);
 
   // Carousel with pause
   useEffect(() => {
@@ -99,6 +110,22 @@ export default function EnhancedHero() {
 
   return (
     <>
+    {/* <div className="h-[64px]" /> */}
+
+  {/* Sticky Query Strip */}
+  <AnimatePresence>
+    {showQuery && (
+      <motion.div
+        className="sticky top-[64px] z-40"
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        <QuickQueryStrip />
+      </motion.div>
+    )}
+  </AnimatePresence>
     <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 overflow-hidden flex items-center pt-20 pb-12 md:pt-24 md:pb-16">
       {/* Animated particles */}
       {particles.map((particle) => (
@@ -438,6 +465,8 @@ export default function EnhancedHero() {
         }
       `}</style>
     </section>
+   
+
       <Features />
           <WhyChooseUs />
         <HowItWorks />

@@ -20,10 +20,10 @@ export default function App() {
   return (
     <>
     <Navbar />
-    <QuickQueryStrip />
+    
       <main >
         <Routes>
-          <Route path="/" element={<AlternateHero />} />
+          <Route path="/" element={<Home />} />
            <Route path="/Contact" element={<Contact />} />
            <Route path="/about" element={<About />} />
            <Route path="/login" element={<Login />} />
