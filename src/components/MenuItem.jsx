@@ -1,61 +1,65 @@
 import { NavLink } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
-export default function MenuItem({ item }) {
+export default function MenuItem({ item, mobile = false }) {
+  const [open, setOpen] = useState(false);
   const hasChildren = item.children && item.children.length > 0;
 
-  return (
-    <div className="relative group/item">
-      {/* Row */}
-      <div
-        className="
-          flex
-          items-center
-          justify-between
-          gap-2
-          rounded-lg
-          px-3
-          py-2
-          text-sm
-          hover:bg-bgLight
-          transition
-        "
-      >
-        {/* Parent label is ALWAYS clickable */}
-        <NavLink
-          to={item.path}
-          className="flex-1 text-textSecondary hover:text-primary"
-        >
-          {item.label}
-        </NavLink>
+  /* ---------- MOBILE ---------- */
+  if (mobile) {
+    return (
+      <div className="space-y-1">
+        <div className="flex items-center justify-between">
+          <NavLink
+            to={item.path}
+            className="text-sm text-textSecondary hover:text-primary"
+          >
+            {item.label}
+          </NavLink>
 
-        {/* Arrow only if children exist */}
-        {hasChildren && (
-          <ChevronRight size={14} className="opacity-60" />
+          {hasChildren && (
+            <button onClick={() => setOpen(!open)}>
+              <ChevronDown
+                size={14}
+                className={`transition-transform ${
+                  open ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          )}
+        </div>
+
+        {open && (
+          <div className="ml-3 mt-1 space-y-1 border-l border-borderLight pl-3">
+            {item.children.map((child) => (
+              <MenuItem key={child.label} item={child} mobile />
+            ))}
+          </div>
         )}
       </div>
+    );
+  }
 
-      {/* Children submenu (hover only if exists) */}
+  /* ---------- DESKTOP ---------- */
+  return (
+    <div className="relative group/item">
+      <NavLink
+        to={item.path}
+        className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-textSecondary hover:bg-bgLight hover:text-primary transition"
+      >
+        {item.label}
+        {hasChildren && <ChevronRight size={14} />}
+      </NavLink>
+
       {hasChildren && (
         <div
           className="
-            absolute
-            left-full
-            top-1
-            ml-2
-            w-64
-            rounded-xl
-            bg-white
-            border
-            border-borderLight
-            shadow-xl
-            opacity-0
-            invisible
-            group-hover/item:opacity-100
-            group-hover/item:visible
-            transition-all
-            duration-200
-            z-50
+            absolute left-full top-0 ml-2 w-64
+            rounded-xl bg-white border border-borderLight shadow-xl
+            opacity-0 invisible
+            group-hover/item:opacity-100 group-hover/item:visible
+            transition-all duration-200
           "
         >
           <div className="p-2 space-y-1">
